@@ -3,10 +3,13 @@ package com.marlonmachado.dscatalog.services;
 import com.marlonmachado.dscatalog.dto.CategoryDTO;
 import com.marlonmachado.dscatalog.entities.Category;
 import com.marlonmachado.dscatalog.repositories.CategoryRepository;
+import com.marlonmachado.dscatalog.services.exceptions.DatabaseException;
 import com.marlonmachado.dscatalog.services.exceptions.ResourcesNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -53,5 +56,18 @@ public class CategoryService {
             throw new ResourcesNotFoundException("Id not found" + id);
         }
 
+    }
+
+    @Transactional(propagation = Propagation.SUPPORTS)
+    public void delete(Long id) {
+        if (!repository.existsById(id)) {
+            throw new ResourcesNotFoundException("id not Found");
+        }
+        try {
+            repository.deleteById(id);
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DatabaseException("Integrity violation");
+        }
     }
 }
