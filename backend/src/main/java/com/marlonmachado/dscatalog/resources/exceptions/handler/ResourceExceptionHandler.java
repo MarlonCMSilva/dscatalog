@@ -1,7 +1,7 @@
 package com.marlonmachado.dscatalog.resources.exceptions.handler;
 
 import com.marlonmachado.dscatalog.resources.exceptions.StandardError;
-import com.marlonmachado.dscatalog.services.exceptions.EntityNotFoundException;
+import com.marlonmachado.dscatalog.services.exceptions.ResourcesNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,8 +13,8 @@ import java.time.Instant;
 @ControllerAdvice
 public class ResourceExceptionHandler {
 
-    @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<StandardError> entityNotFound(EntityNotFoundException e, HttpServletRequest request){
+    @ExceptionHandler(ResourcesNotFoundException.class)
+    public ResponseEntity<StandardError> entityNotFound(ResourcesNotFoundException e, HttpServletRequest request){
             StandardError err = new StandardError();
             err.setTimestamp(Instant.now());
             err.setStatus(HttpStatus.NOT_FOUND.value());
