@@ -70,7 +70,6 @@ public class ProductResourcesTests {
         doThrow(ResourcesNotFoundException.class).when(service).delete(nonExistingId);
         doThrow(DatabaseException.class).when(service).delete(dependentId);
 
-
     }
 
 
