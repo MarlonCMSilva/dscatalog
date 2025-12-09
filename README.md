@@ -114,4 +114,10 @@ Os testes de integração utilizarão o perfil `test` e o banco de dados H2 em m
 
 ---
 
-*Este README foi gerado por Manus AI com base na análise do código-fonte do projeto.*
+## 🧑‍💻 Autor
+
+**Marlon Machado**
+
+*   **GitHub:** https://github.com/MarlonCMSilva
+*   **LinkedIn:** https://www.linkedin.com/in/marloncmachado
+---
