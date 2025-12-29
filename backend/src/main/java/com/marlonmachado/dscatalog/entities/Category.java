@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -76,13 +77,14 @@ public class Category implements Serializable {
 
     @Override
     public final boolean equals(Object o) {
-        if (!(o instanceof Category category)) return false;
+        if (!(o instanceof Category)) return false;
 
-        return id.equals(category.id);
+        Category category = (Category) o;
+        return Objects.equals(id, category.id);
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hashCode(id);
     }
 }

@@ -41,8 +41,9 @@ public class Role implements Serializable {
 
     @Override
     public final boolean equals(Object o) {
-        if (!(o instanceof Role role)) return false;
+        if (!(o instanceof Role)) return false;
 
+        Role role = (Role) o;
         return id.equals(role.id);
     }
 

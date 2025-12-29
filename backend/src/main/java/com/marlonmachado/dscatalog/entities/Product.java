@@ -99,8 +99,9 @@ public class Product implements Serializable {
 
     @Override
     public final boolean equals(Object o) {
-        if (!(o instanceof Product product)) return false;
+        if (!(o instanceof Product)) return false;
 
+        Product product = (Product) o;
         return Objects.equals(id, product.id);
     }
 
