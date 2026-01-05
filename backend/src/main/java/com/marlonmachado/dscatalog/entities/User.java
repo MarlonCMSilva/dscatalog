@@ -1,6 +1,8 @@
 package com.marlonmachado.dscatalog.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -32,11 +34,11 @@ public class User implements Serializable {
 
     }
 
-    public User(Long id, String firstName, String lastName, String emai, String password) {
+    public User(Long id, String firstName, String lastName, String email, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = emai;
+        this.email = email;
         this.password = password;
     }
 

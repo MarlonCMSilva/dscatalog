@@ -1,6 +1,8 @@
 package com.marlonmachado.dscatalog.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -21,8 +23,11 @@ public class Product implements Serializable {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    @Positive(message =  "Preço deve ser possitivo")
     private Double price;
     private String imgUrl;
+
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant date;

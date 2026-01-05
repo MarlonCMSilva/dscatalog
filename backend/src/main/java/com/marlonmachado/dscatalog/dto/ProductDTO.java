@@ -3,6 +3,10 @@ package com.marlonmachado.dscatalog.dto;
 import com.marlonmachado.dscatalog.entities.Category;
 import com.marlonmachado.dscatalog.entities.Product;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.io.Serializable;
 import java.time.Instant;
@@ -15,10 +19,18 @@ public class ProductDTO implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private Long id;
+
+    @Size(min = 5, max = 60, message = "Nome deve ter entre 5 e 60 caracteres")
+    @NotBlank(message = "Campo requerido")
     private String name;
+
     private String description;
+
+    @Positive(message = "Preço deve ser um valor positivo")
     private Double price;
     private String imgUrl;
+
+    @PastOrPresent(message = "A data do produto não pode ser futura")
     private Instant date;
 
     private List<CategoryDTO> categories = new ArrayList<>();
@@ -38,7 +50,7 @@ public class ProductDTO implements Serializable {
     public ProductDTO(Product entity) {
         id = entity.getId();
         name = entity.getName();
-        description = entity.getName();
+        description = entity.getDescription();
         price = entity.getPrice();
         imgUrl = entity.getImgUrl();
         date = entity.getDate();
