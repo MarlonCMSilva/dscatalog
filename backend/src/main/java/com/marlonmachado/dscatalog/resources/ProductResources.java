@@ -1,10 +1,12 @@
 package com.marlonmachado.dscatalog.resources;
 
 import com.marlonmachado.dscatalog.dto.ProductDTO;
+import com.marlonmachado.dscatalog.projections.ProductProjection;
 import com.marlonmachado.dscatalog.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -21,8 +23,11 @@ public class ProductResources {
     private ProductService service;
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable){
-        Page<ProductDTO> list  = service.findAllPaged(pageable);
+    public ResponseEntity<Page<ProductDTO>> findAll(
+            @RequestParam(value = "name", defaultValue = "") String name,
+            @RequestParam(value = "categoryId", defaultValue = "0") String categoryId,
+             Pageable pageable){
+        Page<ProductDTO> list  = service.findAllPaged(name, categoryId, pageable);
         return ResponseEntity.ok().body(list);
     }
 
